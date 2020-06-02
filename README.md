@@ -1,10 +1,10 @@
-# This project is created by CRA.
+## This project is created by CRA.
 
-# To run the project please run following command "npm install" or "yarn".
+## To run the project please run following command "npm install" or "yarn".
 
-# After run the above command run "npm start" or "yarn start".
+## After run the above command run "npm start" or "yarn start".
 
-# Routing
+## Routing
 
 --> / for google login
 --> /landing for data filter view
