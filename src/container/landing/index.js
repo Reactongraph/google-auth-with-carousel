@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import developmentImage from "../../images/development.svg";
 import communication from "../../images/communication.svg";
 import engineering from "../../images/engineering.svg";
@@ -57,29 +57,22 @@ let settings = {
   ]
 };
 
-class LandingConatiner extends Component {
-  state = {
-    selectedTabs: "development"
-  };
-  componentDidMount() {
+const LandingContainer = () => {
+  const [selectedTabs, setSelectedTabs] = useState("development");
+  useEffect(() => {
     if (!localStorage.getItem("userToken")) {
       this.props.history.push("/");
     }
-  }
+  },[]);
 
-  handleTabs = data => {
-    this.setState({
-      selectedTabs: data
-    });
+  const handleTabs = data => {
+    setSelectedTabs(data);
   };
 
-  render() {
-    const { selectedTabs } = this.state;
-    let selectedTabData = [];
-    selectedTabData = COURSE_CARDS.filter(r => r.type === selectedTabs);
-
-    return (
-      <section className="content-wrapper">
+  let selectedTabData = [];
+  selectedTabData = COURSE_CARDS.filter(r => r.type === selectedTabs);
+  return (
+    <section className="content-wrapper">
         <div className="container">
           <div className="content-area">
             <h1 className="content-title">Learn what fascinates you</h1>
@@ -92,7 +85,7 @@ class LandingConatiner extends Component {
               explore={explore}
               tabsData={HEADER_TABS}
               selectedTabs={selectedTabs}
-              handleTabs={this.handleTabs}
+              handleTabs={handleTabs}
             />
           </div>
           <SliderContainer
@@ -105,8 +98,8 @@ class LandingConatiner extends Component {
           />
         </div>
       </section>
-    );
-  }
+  );
+
 }
 
-export default LandingConatiner;
+export default LandingContainer;
